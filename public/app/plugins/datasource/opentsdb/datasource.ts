@@ -215,33 +215,35 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
   }
 
   _performEmsSuggestQuery(query: string, type: string) {
-    const response = this.emsRequest();
-    console.log('stevensli', response);
+    // const response = this.emsRequest();
+    // console.log('stevensli', response);
 
-    // const reqBody: any = {
-    //   MetaType: type,
-    //   FilterStr: query,
-    // };
-    //
-    // console.log('stevensli', reqBody);
-    // const options = {
-    //   method: 'POST',
-    //   url: 'http://100.93.192.97:3021/api/v3',
-    //   data: reqBody,
-    // };
-    // console.log('stevensli', options);
-    // // this._addCredentialOptions(options);
-    // let metricList = getBackendSrv().datasourceRequest(options);
-    //
-    // console.log('stevensli', metricList);
-  }
+    const reqBody: any = {
+      MetaType: type,
+      FilterStr: query,
+      Action: 'DescribeGrafanaMetaData',
+      RequestId: '42-43',
+    };
 
-  async emsRequest() {
-    return getBackendSrv().datasourceRequest({
-      url: 'http://100.93.192.97:3021/api/v3',
+    console.log('stevensli', reqBody);
+    const options = {
       method: 'POST',
-    });
+      url: 'http://100.93.192.97:3021/api/v3',
+      data: reqBody,
+    };
+    console.log('stevensli', options);
+    // this._addCredentialOptions(options);
+    let metricList = getBackendSrv().datasourceRequest(options);
+
+    console.log('stevensli', metricList);
   }
+
+  // async emsRequest() {
+  //   return getBackendSrv().datasourceRequest({
+  //     url: 'http://100.93.192.97:3021/api/v3',
+  //     method: 'POST',
+  //   });
+  // }
 
   _performMetricKeyValueLookup(metric: string, keys: any): Observable<any[]> {
     if (!metric || !keys) {
