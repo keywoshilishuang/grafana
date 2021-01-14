@@ -229,7 +229,7 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
     this._addCredentialOptions(options);
     let metricList = getBackendSrv().datasourceRequest(options);
 
-    console.log('stevensli', metricList)
+    console.log('stevensli', metricList);
   }
 
   _performMetricKeyValueLookup(metric: string, keys: any): Observable<any[]> {
