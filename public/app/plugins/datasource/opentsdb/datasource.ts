@@ -215,7 +215,7 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
   }
 
   _performEmsSuggestQuery(query: string, type: string) {
-    const response = await this.request();
+    const response = this.emsRequest();
     console.log('stevensli', response);
 
     // const reqBody: any = {
@@ -236,7 +236,7 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
     // console.log('stevensli', metricList);
   }
 
-  async request() {
+  async emsRequest() {
     return getBackendSrv().datasourceRequest({
       url: 'http://100.93.192.97:3021/api/v3',
       method: 'POST',
