@@ -220,13 +220,14 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
       FilterStr: query,
     };
 
+    console.log('stevensli', reqBody);
     const options = {
       method: 'POST',
-      url: 'http://100.93.192.97:3021/api/v3',
+      url: '100.93.192.97:3021/api/v3',
       data: reqBody,
     };
-
-    this._addCredentialOptions(options);
+    console.log('stevensli', options);
+    // this._addCredentialOptions(options);
     let metricList = getBackendSrv().datasourceRequest(options);
 
     console.log('stevensli', metricList);
