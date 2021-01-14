@@ -225,17 +225,17 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
       RequestId: '42-43',
     };
 
-    console.log('stevensli', reqBody);
+    console.log('stevensli reqBody', reqBody);
     const options = {
       method: 'POST',
       url: `${this.url}`,
       data: reqBody,
     };
-    console.log('stevensli', options);
+    console.log('stevensli options', options);
     // this._addCredentialOptions(options);
-    let metricList = getBackendSrv().datasourceRequest(options);
+    const metricList = getBackendSrv().datasourceRequest(options);
 
-    console.log('stevensli', metricList);
+    console.log('stevensli metricList', metricList);
   }
 
   // async emsRequest() {
