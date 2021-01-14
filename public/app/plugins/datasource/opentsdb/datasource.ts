@@ -215,22 +215,32 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
   }
 
   _performEmsSuggestQuery(query: string, type: string) {
-    const reqBody: any = {
-      MetaType: type,
-      FilterStr: query,
-    };
+    const response = await this.request();
+    console.log('stevensli', response);
 
-    console.log('stevensli', reqBody);
-    const options = {
-      method: 'POST',
+    // const reqBody: any = {
+    //   MetaType: type,
+    //   FilterStr: query,
+    // };
+    //
+    // console.log('stevensli', reqBody);
+    // const options = {
+    //   method: 'POST',
+    //   url: 'http://100.93.192.97:3021/api/v3',
+    //   data: reqBody,
+    // };
+    // console.log('stevensli', options);
+    // // this._addCredentialOptions(options);
+    // let metricList = getBackendSrv().datasourceRequest(options);
+    //
+    // console.log('stevensli', metricList);
+  }
+
+  async request() {
+    return getBackendSrv().datasourceRequest({
       url: 'http://100.93.192.97:3021/api/v3',
-      data: reqBody,
-    };
-    console.log('stevensli', options);
-    // this._addCredentialOptions(options);
-    let metricList = getBackendSrv().datasourceRequest(options);
-
-    console.log('stevensli', metricList);
+      method: 'POST',
+    });
   }
 
   _performMetricKeyValueLookup(metric: string, keys: any): Observable<any[]> {
@@ -294,6 +304,8 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
       url: this.url + relativeUrl,
       params: params,
     };
+
+    console.log('get', options);
 
     this._addCredentialOptions(options);
 
