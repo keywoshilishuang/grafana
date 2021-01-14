@@ -223,7 +223,7 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
     console.log('stevensli', reqBody);
     const options = {
       method: 'POST',
-      url: '100.93.192.97:3021/api/v3',
+      url: 'http://100.93.192.97:3021/api/v3',
       data: reqBody,
     };
     console.log('stevensli', options);
