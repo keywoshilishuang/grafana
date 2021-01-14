@@ -229,7 +229,7 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
     this._addCredentialOptions(options);
     let metricList = getBackendSrv().datasourceRequest(options);
 
-    console.log('stevensli',metricList)
+    console.log('stevensli', metricList)
   }
 
   _performMetricKeyValueLookup(metric: string, keys: any): Observable<any[]> {
@@ -335,7 +335,7 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
     const metricsQuery = interpolated.match(metricsRegex);
     if (metricsQuery) {
       console.log('stevensli', metricsQuery[1]);
-      this._performEmsSuggestQuery(metricsQuery[1], 'metrics')
+      this._performEmsSuggestQuery(metricsQuery[1], 'metrics');
       return this._performSuggestQuery(metricsQuery[1], 'metrics')
         .pipe(map(responseTransform))
         .toPromise();
