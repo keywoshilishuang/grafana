@@ -48,7 +48,7 @@ public/css/*.min.css
 .vs/
 .eslintcache
 
-/data/*
+# /data/*
 /bin/*
 
 # devenv
