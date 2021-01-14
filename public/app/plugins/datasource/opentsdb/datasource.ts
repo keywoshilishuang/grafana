@@ -222,7 +222,7 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
 
     const options = {
       method: 'POST',
-      url: this.url + '/api/v3',
+      url: 'http://100.93.192.97:3021/api/v3',
       data: reqBody,
     };
 
