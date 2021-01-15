@@ -371,6 +371,7 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
 
     const tagNamesQuery = interpolated.match(tagNamesRegex);
     if (tagNamesQuery) {
+      console.log('tagNamesQuery', tagNamesQuery[1]);
       return this._performMetricKeyLookup(tagNamesQuery[1])
         .pipe(map(responseTransform))
         .toPromise();
@@ -378,6 +379,8 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
 
     const tagValuesQuery = interpolated.match(tagValuesRegex);
     if (tagValuesQuery) {
+      console.log('tagValuesQuery1', tagValuesQuery[1]);
+      console.log('tagValuesQuery2', tagValuesQuery[2]);
       return this._performMetricKeyValueLookup(tagValuesQuery[1], tagValuesQuery[2])
         .pipe(map(responseTransform))
         .toPromise();
@@ -385,6 +388,7 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
 
     const tagNamesSuggestQuery = interpolated.match(tagNamesSuggestRegex);
     if (tagNamesSuggestQuery) {
+      console.log('tagNamesSuggestQuery', tagNamesSuggestQuery[1]);
       return this._performSuggestQuery(tagNamesSuggestQuery[1], 'tagk')
         .pipe(map(responseTransform))
         .toPromise();
@@ -392,6 +396,7 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
 
     const tagValuesSuggestQuery = interpolated.match(tagValuesSuggestRegex);
     if (tagValuesSuggestQuery) {
+      console.log('tagValuesSuggestQuery', tagValuesSuggestQuery[1]);
       return this._performSuggestQuery(tagValuesSuggestQuery[1], 'tagv')
         .pipe(map(responseTransform))
         .toPromise();
