@@ -236,7 +236,7 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
     const metricList = getBackendSrv().datasourceRequest(options);
 
     console.log('stevensli metricList', metricList);
-    console.log('stevensli data', metricList.data);
+    // console.log('stevensli data', metricList.data);
   }
 
   // async emsRequest() {
