@@ -233,9 +233,9 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
     };
     console.log('stevensli options', options);
     // this._addCredentialOptions(options);
-    const metricList = getBackendSrv().fetch(options);
+    return getBackendSrv().fetch(options);
 
-    console.log('stevensli metricList', metricList);
+    // console.log('stevensli metricList', metricList);
     // console.log('stevensli data', metricList.data);
   }
 
@@ -351,7 +351,12 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
     const metricsQuery = interpolated.match(metricsRegex);
     if (metricsQuery) {
       console.log('stevensli', metricsQuery[1]);
-      this._performEmsSuggestQuery(metricsQuery[1], 'metrics');
+      this._performEmsSuggestQuery(metricsQuery[1], 'metrics').pipe(
+        map((result: any) => {
+          console.log('suggest result.data is:', result.data);
+          // return result.data;
+        })
+      );
       return this._performSuggestQuery(metricsQuery[1], 'metrics')
         .pipe(map(responseTransform))
         .toPromise();
