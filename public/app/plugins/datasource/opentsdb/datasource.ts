@@ -233,7 +233,7 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
   }
 
   _performEmsSuggestQuery(query: string, type: string) {
-    return this._suggestPost(query,type).pipe(
+    return this._suggestPost(query, type).pipe(
       map((result: any) => {
         console.log('suggest result.data is:', result.data);
         return result.data;
