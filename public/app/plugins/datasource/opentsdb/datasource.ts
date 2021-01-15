@@ -231,7 +231,7 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
     console.log('stevensli options', options);
     const fetchData = getBackendSrv().fetch(options);
     console.log('stevensli fetchData', fetchData);
-    return fetchData
+    return fetchData;
   }
 
   _performEmsSuggestQuery(query: string, type: string) {
