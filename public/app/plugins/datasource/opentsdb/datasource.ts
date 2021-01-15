@@ -233,7 +233,7 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
     };
     console.log('stevensli options', options);
     // this._addCredentialOptions(options);
-    const metricList = getBackendSrv().datasourceRequest(options);
+    const metricList = getBackendSrv().fetch(options);
 
     console.log('stevensli metricList', metricList);
     // console.log('stevensli data', metricList.data);
