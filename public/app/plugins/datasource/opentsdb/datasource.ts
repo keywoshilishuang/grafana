@@ -239,8 +239,9 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
       map((result: any) => {
         // console.log('suggest result is:', result);
         console.log('suggest result.data is:', result.data);
-        // console.log('suggest result.data is:', result.data);
-        return result.data;
+        console.log('suggest result.data.Response is:', result.data.Response);
+        console.log('suggest result.data.MetricMeta is:', result.data.Response.MetricMeta);
+        return result.data.Response.MetricMeta;
       })
     );
   }
