@@ -214,12 +214,22 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
     );
   }
 
+  _randomRangeId(num: number){
+    var returnStr = "";
+    var charStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for(var i=0; i<num; i++){
+      var index = Math.round(Math.random() * (charStr.length-1));
+      returnStr += charStr.substring(index,index+1);
+    }
+    return returnStr;
+  }
+
   _suggestPost(query: string, type: string) {
     const reqBody: any = {
       MetaType: type,
       FilterStr: query,
       Action: 'DescribeGrafanaMetaData',
-      RequestId: '42-43',
+      RequestId: this._randomRangeId(12),
     };
 
     console.log('stevensli reqBody', reqBody);
@@ -245,13 +255,6 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
       })
     );
   }
-
-  // async emsRequest() {
-  //   return getBackendSrv().datasourceRequest({
-  //     url: 'http://100.93.192.97:3021/api/v3',
-  //     method: 'POST',
-  //   });
-  // }
 
   _performMetricKeyValueLookup(metric: string, keys: any): Observable<any[]> {
     if (!metric || !keys) {
