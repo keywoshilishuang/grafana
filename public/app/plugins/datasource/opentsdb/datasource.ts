@@ -214,10 +214,7 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
     );
   }
 
-  _performEmsSuggestQuery(query: string, type: string) {
-    // const response = this.emsRequest();
-    // console.log('stevensli', response);
-
+  _suggestPost(query: string, type: string) {
     const reqBody: any = {
       MetaType: type,
       FilterStr: query,
@@ -232,11 +229,16 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
       data: reqBody,
     };
     console.log('stevensli options', options);
-    // this._addCredentialOptions(options);
     return getBackendSrv().fetch(options);
+  }
 
-    // console.log('stevensli metricList', metricList);
-    // console.log('stevensli data', metricList.data);
+  _performEmsSuggestQuery(query: string, type: string) {
+    return this._suggestPost(query,type).pipe(
+      map((result: any) => {
+        console.log('suggest result.data is:', result.data);
+        return result.data;
+      })
+    );
   }
 
   // async emsRequest() {
@@ -351,15 +353,12 @@ export default class OpenTsDatasource extends DataSourceApi<OpenTsdbQuery, OpenT
     const metricsQuery = interpolated.match(metricsRegex);
     if (metricsQuery) {
       console.log('stevensli', metricsQuery[1]);
-      this._performEmsSuggestQuery(metricsQuery[1], 'metrics').pipe(
-        map((result: any) => {
-          console.log('suggest result.data is:', result.data);
-          // return result.data;
-        })
-      );
-      return this._performSuggestQuery(metricsQuery[1], 'metrics')
+      return this._performEmsSuggestQuery(metricsQuery[1], 'metrics')
         .pipe(map(responseTransform))
         .toPromise();
+      // return this._performSuggestQuery(metricsQuery[1], 'metrics')
+      //   .pipe(map(responseTransform))
+      //   .toPromise();
     }
 
     const tagNamesQuery = interpolated.match(tagNamesRegex);
